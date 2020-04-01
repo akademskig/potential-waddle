@@ -22,7 +22,7 @@ Fortunately enough, all the data is already cataloged into their DB with a simpl
   - Owner
   - Random
 - The application should allow searching for comic books based on a name (or partial name).
-- It is highly recommended that you use [Redux](https://redux.js.org/) for state management and [ReactRouter](https://reacttraining.com/react-router/web/guides/quick-start) for routing.
+- We require you to use [Redux](https://redux.js.org/) for state management and [ReactRouter](https://reacttraining.com/react-router/web/guides/quick-start) for routing.
 - You may use any boilerplate of your choice or start completely clean.
 
 ### Bonus Points
