@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MainLayout from './layouts/main.layout';
+import MainRoutes from './routes';
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components'
+const history = createBrowserHistory()
 
+const theme = {
+  colors: {
+    header_bg: '#535353',
+    main_bg: '#333333',
+    font_dark: '#5A5A5A',
+    font_light: '#CCCCCC'
+  },
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <Router history={history}>
+          <MainLayout>
+            <MainRoutes></MainRoutes>
+          </MainLayout>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
