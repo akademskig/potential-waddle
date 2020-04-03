@@ -9,7 +9,7 @@ const Container = styled.div`
     width: 100%;
     border: 3px solid #777777;
     border-radius: 8px;
-    padding: 18px;
+    padding: 9px 18px;
 `
 const Input = styled.input`
     background-color: transparent;
@@ -17,7 +17,7 @@ const Input = styled.input`
     width: 100%;
     margin-left: 18px;
     color: ${(props)=> props.theme.colors.font_dark};
-    height: 23px;
+    height: 27.5px;
     font-size: 20px;
     &:focus{
         border: none;
