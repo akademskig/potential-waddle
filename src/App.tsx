@@ -5,6 +5,8 @@ import MainRoutes from './routes';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
+import { Provider } from 'react-redux'
+import store from './redux/store';
 const history = createBrowserHistory()
 
 const theme = {
@@ -18,13 +20,15 @@ const theme = {
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Router history={history}>
-          <MainLayout>
-            <MainRoutes></MainRoutes>
-          </MainLayout>
-        </Router>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Router history={history}>
+            <MainLayout>
+              <MainRoutes></MainRoutes>
+            </MainLayout>
+          </Router>
+        </ThemeProvider>
+      </Provider>
     </div>
   );
 }
