@@ -1,5 +1,4 @@
 import { FETCH_BOOKS_START, FETCH_BOOKS_OK, SEARCH_BOOKS_OK, SEARCH_BOOKS_START } from './book.types';
-import BookList from '../../components/book.list';
 
 
 export const fetchBooksStart = () => ({
