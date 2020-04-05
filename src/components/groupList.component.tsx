@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectBookGroups } from '../redux/books/book.selectors';
 
@@ -19,6 +19,7 @@ const GroupLink = styled(NavLink)`
     font-size: 18px;
     padding: 0.2em 0.8em;
     text-decoration: none;
+    text-transform: capitalize;
     &.active{
         color: white;
         background-color: #F15454;
@@ -31,7 +32,7 @@ const GroupList = () => {
         <Container>
             {
                 bookGroups && bookGroups.map((group: any, idx: number) => (
-                    <GroupLink  to={`/group/${group}`} key={idx} activeClassName="active">{group}</GroupLink>
+                    <GroupLink  to={`/home/${group}`} key={idx} activeClassName="active">{group}</GroupLink>
                 ))
             }
         </Container>
