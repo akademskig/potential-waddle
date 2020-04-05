@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components'
 import { useParams, useHistory } from 'react-router-dom';
 import BookItem from './book.item';
-import { selectBookItemsByGroupValue, selectGroupValues, selectFirstBookGroup } from '../redux/books/book.selectors';
+import { selectBookItemsByGroupValue, selectGroupValues, selectFirstBookGroup, selectLoading } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 import useWindowSize from '../utils/useWindowSize';
 import Loader from "react-loaders"
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 
 const Container = styled.div`
@@ -13,6 +15,12 @@ const Container = styled.div`
     flex-direction: column;
     margin: 1em 0;
     position: relative;
+    .no-data{
+        color: ${(props) => props.theme.colors.font_dark};
+        font-size: 18px;
+        margin-top: 2em;
+        text-align: center;
+    }
 `
 
 const StyledLoader = styled.div`
@@ -32,7 +40,7 @@ const StyledLoader = styled.div`
     }
 `
 
-const BookList = () => {
+const BookList = ({loading}: any) => {
     let { group } = useParams()
     let firstGroup = useSelector(selectFirstBookGroup)
     const history = useHistory()
@@ -41,21 +49,25 @@ const BookList = () => {
         history.push(`/home/${firstGroup}`)
     }
     const groupValues = useSelector(selectGroupValues(group))
-
     return (
         <Container>
-            {groupValues.length ?
-                groupValues.map((groupValue: any, idx: number) => (
-                    <BooksByGroupList groupValue={groupValue} group={group} key={idx}></BooksByGroupList>
-                )) :
-                <StyledLoader>
+            {loading ?  
+            <StyledLoader>
                     <Loader innerClassName="loader" active={true} type="pacman"></Loader>
-                </StyledLoader>
+                </StyledLoader> :
+                groupValues.length? groupValues.map((groupValue: any, idx: number) => (
+                    <BooksByGroupList groupValue={groupValue} group={group} key={idx}></BooksByGroupList>
+                )) : <p className="no-data">No comics available</p>
+              
             }
         </Container>
     )
 }
-export default BookList
+
+const mapStateToProps = createStructuredSelector({
+    loading: selectLoading,
+})
+export default connect(mapStateToProps)(BookList)
 
 
 const BooksByGroupListC = styled.div<BooksByGroupListCType>`
