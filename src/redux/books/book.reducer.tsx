@@ -1,5 +1,5 @@
-import { FETCH_BOOKS_OK, SEARCH_BOOKS_OK, FETCH_BOOKS_START, SEARCH_BOOKS_START } from './book.types';
-
+import { FETCH_BOOKS_OK, FETCH_BOOKS_START, SEARCH_BOOKS_START } from './book.types';
+import { v1 } from 'uuid'
 const initialState = {
     bookList: [],
     loading: false,
@@ -13,22 +13,13 @@ function bookReducer(state = initialState, action: { type: string, payload: any 
             return {
                 ...state,
                 loading: false,
-                bookList
+                bookList: addUUids(bookList)
             }
         }
         case FETCH_BOOKS_START: {
             return {
                 ...state,
                 loading: true
-            }
-        }
-
-        case SEARCH_BOOKS_OK: {
-            const { bookList } = action.payload
-            return {
-                ...state,
-                loading: false,
-                bookList
             }
         }
         case SEARCH_BOOKS_START: {
@@ -39,6 +30,13 @@ function bookReducer(state = initialState, action: { type: string, payload: any 
         }
         default: return state
     }
+}
+
+const addUUids = (bookList: any) => {
+    return bookList.map((book: any) => {
+        book['id'] = v1()
+        return book
+    })
 }
 
 export default bookReducer
