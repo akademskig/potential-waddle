@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import BookItem from './book.item';
 import { selectBookItemsByGroupValue, selectGroupValues, selectFirstBookGroup } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';

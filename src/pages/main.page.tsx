@@ -2,9 +2,8 @@ import React, { Component, Dispatch } from 'react';
 import SearchBar from '../components/search.component';
 import GroupList from '../components/groupList.component';
 import BookList from '../components/book.list';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { selectBookItems, selectBookGroups } from '../redux/books/book.selectors';
-import { FETCH_BOOKS_START } from '../redux/books/book.types';
 import { createStructuredSelector } from 'reselect';
 import { fetchBooksStart } from '../redux/books/book.actions';
 
@@ -19,7 +18,7 @@ class MainPage extends Component<MainPageProps> {
             <div>
                 <SearchBar />
                 <GroupList ></GroupList>
-                <BookList ></BookList>
+                <BookList></BookList>
             </div>
         )
     }
