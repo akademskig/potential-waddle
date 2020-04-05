@@ -35,7 +35,7 @@ const BookItem = ({ book }: { book: any }) => {
     }
     return (
         <Container>
-            <Link to={`${book / book.id}`}>
+            <Link to={`/book/${book.id}`}>
                 <BookImage image={image} />
             </Link>
             <BookText>{book.name}<br />
