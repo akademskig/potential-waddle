@@ -5,12 +5,31 @@ import BookItem from './book.item';
 import { selectBookItemsByGroupValue, selectGroupValues, selectFirstBookGroup } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 import useWindowSize from '../utils/useWindowSize';
+import Loader from "react-loaders"
 
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin: 1em 0;
+    position: relative;
+`
+
+const StyledLoader = styled.div`
+    position:fixed;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .loader{
+        margin-left:3em;
+        margin-top: 4em;
+        width: 130px;
+        height: 130px;
+    }
 `
 
 const BookList = () => {
@@ -25,10 +44,13 @@ const BookList = () => {
 
     return (
         <Container>
-            {
-                groupValues && groupValues.map((groupValue: any, idx: number) => (
+            {groupValues.length ?
+                groupValues.map((groupValue: any, idx: number) => (
                     <BooksByGroupList groupValue={groupValue} group={group} key={idx}></BooksByGroupList>
-                ))
+                )) :
+                <StyledLoader>
+                    <Loader innerClassName="loader" active={true} type="pacman"></Loader>
+                </StyledLoader>
             }
         </Container>
     )
