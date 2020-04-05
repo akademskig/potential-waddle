@@ -16,12 +16,13 @@ const Container = styled.div`
 const BookList = () => {
     let { group } = useParams()
     let firstGroup = useSelector(selectFirstBookGroup)
-    let history = useHistory();
-    if (!group && firstGroup)
-        history.push(`/group/${firstGroup}`)
+    const history = useHistory()
 
+    if (!group && firstGroup) {
+        history.push(`/home/${firstGroup}`)
+    }
     const groupValues = useSelector(selectGroupValues(group))
-    console.log(groupValues)
+
     return (
         <Container>
             {
