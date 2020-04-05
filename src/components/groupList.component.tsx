@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectBookGroups } from '../redux/books/book.selectors';
 
 
 const Container = styled.div`
     display: flex;
+    flex-wrap: wrap;
     margin: 1em 0;
 `
-const GroupLink = styled(Link)`
+const GroupLink = styled(NavLink)`
     background-color: transparent;
     border-radius: 19px;
     box-shadow: 0px 2px 3px rgba(34, 34, 34, 0.6);
@@ -16,26 +19,19 @@ const GroupLink = styled(Link)`
     font-size: 18px;
     padding: 0.2em 0.8em;
     text-decoration: none;
-    &:active{
+    &.active{
         color: white;
         background-color: #F15454;
     }
     `
 const GroupList = () => {
-
-    const [state, setstate] = useState({
-        groups:
-            [{ id: 'year', name: 'Year' },
-            { id: 'writer', name: 'Writer' },
-            { id: 'artist', name: 'Artist' },
-            { id: 'owner', name: 'Owner' },
-            { id: 'random', name: 'Random' }]
-    })
+    const bookGroups = useSelector(selectBookGroups)
+    
     return (
         <Container>
             {
-                state.groups.map((group, idx) => (
-                    <GroupLink to={`group/${group.id}`} key={idx}>{group.name}</GroupLink>
+                bookGroups && bookGroups.map((group: any, idx: number) => (
+                    <GroupLink  to={`/group/${group}`} key={idx} activeClassName="active">{group}</GroupLink>
                 ))
             }
         </Container>
