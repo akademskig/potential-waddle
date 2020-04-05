@@ -1,5 +1,5 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { FETCH_BOOKS_OK, FETCH_BOOKS_ERROR, FETCH_BOOKS_START, SEARCH_BOOKS_START, SEARCH_BOOKS_OK } from './book.types';
+import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
+import { FETCH_BOOKS_OK, FETCH_BOOKS_ERROR, FETCH_BOOKS_START, SEARCH_BOOKS_START } from './book.types';
 import BookApi from '../../api/BookApi';
 
 
@@ -13,9 +13,10 @@ function* fetchBooks() {
 }
 
 function* searchBooks(searchValue: string){
+   yield delay(500)
    try {
       const books = yield call(BookApi.fetchBooks, searchValue);
-      yield put({type: SEARCH_BOOKS_OK, payload: {bookList: books}});
+      yield put({type: FETCH_BOOKS_OK, payload: {bookList: books}});
    } catch (error) {
       yield put({type: FETCH_BOOKS_ERROR, error});
    }
