@@ -37,13 +37,12 @@ export default BookList
 
 
 const BooksByGroupListC = styled.div<BooksByGroupListCType>`
-
 display: grid;
 grid-template-columns: repeat(${({ columns }) => columns},
     ${({ columnWidth }) => columnWidth}%);
 grid-column-gap: ${({ gridGap }) => gridGap}%;
 width: 100%;
-border-bottom: solid 2px ${(props) => props.theme.colors.font_light};
+border-bottom: solid 2px ${(props) => props.theme.colors.border};
 `
 type BooksByGroupListCType = {
     columnWidth: number,
@@ -55,6 +54,8 @@ const GroupValueTitle = styled.h4`
 font-size: 32px;
 color: ${(props) => props.theme.colors.font_dark};
 width: 100%;
+font-weight: normal;
+margin: 1em 0;
 `
 const BooksByGroupList = ({ groupValue, group }: { groupValue: string, group: string | undefined }) => {
     const windowWidth = useWindowSize().width
