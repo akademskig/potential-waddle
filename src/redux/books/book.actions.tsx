@@ -1,4 +1,5 @@
-import {FETCH_BOOKS_START, FETCH_BOOKS_OK} from "./book.types"
+import { FETCH_BOOKS_START, FETCH_BOOKS_OK, SEARCH_BOOKS_OK, SEARCH_BOOKS_START } from './book.types';
+import BookList from '../../components/book.list';
 
 
 export const fetchBooksStart = () => ({
@@ -7,6 +8,19 @@ export const fetchBooksStart = () => ({
 
 export const fetchBooksOk = (bookList: []) => ({
     type: FETCH_BOOKS_OK,
+    payload: {
+        bookList
+    }
+})
+
+export const searchBooksStart = (searchValue: string) => ({
+    type: SEARCH_BOOKS_START,
+    payload:{
+        searchValue}
+})
+
+export const searchBooksOk = (bookList: []) => ({
+    type: SEARCH_BOOKS_OK,
     payload: {
         bookList
     }

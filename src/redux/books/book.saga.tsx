@@ -1,24 +1,29 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-import { FETCH_BOOKS_OK, FETCH_BOOKS_ERROR, FETCH_BOOKS_START } from './book.types';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { FETCH_BOOKS_OK, FETCH_BOOKS_ERROR, FETCH_BOOKS_START, SEARCH_BOOKS_START, SEARCH_BOOKS_OK } from './book.types';
 import BookApi from '../../api/BookApi';
 
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchBooks() {
    try {
       const books = yield call(BookApi.fetchBooks);
       yield put({type: FETCH_BOOKS_OK, payload: {bookList: books}});
-   } catch (e) {
-      yield put({type: FETCH_BOOKS_ERROR, message: e.message});
+   } catch (error) {
+      yield put({type: FETCH_BOOKS_ERROR, error});
    }
 }
 
-/*
-  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
-*/
+function* searchBooks(searchValue: string){
+   try {
+      const books = yield call(BookApi.fetchBooks, searchValue);
+      yield put({type: SEARCH_BOOKS_OK, payload: {bookList: books}});
+   } catch (error) {
+      yield put({type: FETCH_BOOKS_ERROR, error});
+   }
+}
+
 function* bookSaga() {
-  yield takeEvery(FETCH_BOOKS_START, fetchBooks);
+   yield takeEvery(FETCH_BOOKS_START, fetchBooks)
+   yield takeLatest(SEARCH_BOOKS_START, (action: any) => searchBooks(action.payload.searchValue))
 }
 
 export default bookSaga
