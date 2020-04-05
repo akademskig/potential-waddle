@@ -40,7 +40,7 @@ const StyledLoader = styled.div`
     }
 `
 
-const BookList = ({loading}: any) => {
+const BookList = ({ loading }: any) => {
     let { group } = useParams()
     let firstGroup = useSelector(selectFirstBookGroup)
     const history = useHistory()
@@ -51,14 +51,14 @@ const BookList = ({loading}: any) => {
     const groupValues = useSelector(selectGroupValues(group))
     return (
         <Container>
-            {loading ?  
-            <StyledLoader>
+            {loading ?
+                <StyledLoader>
                     <Loader innerClassName="loader" active={true} type="pacman"></Loader>
                 </StyledLoader> :
-                groupValues.length? groupValues.map((groupValue: any, idx: number) => (
+                groupValues && groupValues.length ? groupValues.map((groupValue: any, idx: number) => (
                     <BooksByGroupList groupValue={groupValue} group={group} key={idx}></BooksByGroupList>
                 )) : <p className="no-data">No comics available</p>
-              
+
             }
         </Container>
     )
