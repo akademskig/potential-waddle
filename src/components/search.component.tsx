@@ -26,7 +26,7 @@ const Input = styled.input`
     `
 const SearchBar = () => {
 
-const [state, setstate] = useState("")
+const [, setstate] = useState("")
 return(
         <Container>
             <img src={searchIcon} alt="Search Icon"/>
