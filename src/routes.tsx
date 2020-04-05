@@ -4,19 +4,16 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
-  } from "react-router-dom";
+} from "react-router-dom";
 import MainPage from './pages/main.page';
-import BookPage from './pages/book.page';
 
-const MainRoutes = () =>{
+const MainRoutes = () => {
     return (
         <Switch>
-            <Route exact path="/" component={()=><MainPage></MainPage>}>
+            <Route exact path="/" component={() => <MainPage></MainPage>}>
 
             </Route>
-            <Route path="/:id" component={(props: any)=> <BookPage {...props} ></BookPage>}>
-
+            <Route path="/group/:group" component={() => <MainPage></MainPage>}>
             </Route>
         </Switch>
     )
