@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import BookImage from './book.image';
 
 const Container = styled.div`
     @import 'loaders.css/src/animations/semi-circle-spin.scss';
@@ -45,10 +45,4 @@ const BookItem = ({ book }: { book: any }) => {
     )
 }
 
-const BookImage = ({ image }: { image: any }) => (
-    <LazyLoadImage
-        alt={image.alt}
-        width={image.width}
-        src={image.src} />
-);
 export default BookItem
