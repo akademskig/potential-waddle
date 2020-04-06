@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import useWindowSize from '../utils/useWindowSize';
 import { selectBookItemsByGroupValue } from '../redux/books/book.selectors';
+import calculateGridLayout from '../utils/calculateGridLayout';
 
 
 const BookListGrid = styled.div<BookListGridType>`
@@ -28,22 +29,7 @@ const GroupValueTitle = styled.h4`
     margin: 1em 0;
     `
 
-const calculateGridLayout = (windowWidth: number) => {
-    const gridGap = 5
-    let gridItemWidth = 230
-    if (windowWidth > 1800) {
-        gridItemWidth = 250
-    }
-    const container = windowWidth - windowWidth * 0.04
-    const columns = Math.floor(container / gridItemWidth)
-    const columnWidth = (container / columns / container * 100) - (columns - 1) * gridGap / columns
-    return {
-        columnWidth,
-        gridGap,
-        columns
-    }
 
-}
 const BookListByGroup = ({ groupValue, group }: { groupValue: string, group: string | undefined }) => {
     const windowWidth = useWindowSize().width
     const gridProps = calculateGridLayout(windowWidth)
