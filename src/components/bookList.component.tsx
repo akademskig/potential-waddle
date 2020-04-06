@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components'
 import { useParams, useHistory } from 'react-router-dom';
-import BookItem from './book.item';
+import BookItem from './bookItem.component';
 import { selectBookItemsByGroupValue, selectGroupValues, selectFirstBookGroup, selectLoading } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 import useWindowSize from '../utils/useWindowSize';
@@ -40,16 +40,18 @@ const StyledLoader = styled.div`
     }
 `
 
-const BookList = ({ loading, bookGroup }: {loading: boolean, bookGroup?: string}) => {
+const BookListByGroup = ({ bookGroup }: { bookGroup?: string}) => {
     let { group } = useParams()
-
+    let selectedGroup = group
     if (bookGroup)
-        group = bookGroup
+        selectedGroup = bookGroup
     let firstGroup = useSelector(selectFirstBookGroup)
+    let loading = useSelector(selectLoading)
     const history = useHistory()
-    if (!group && firstGroup) {
+    if (!selectedGroup && firstGroup) {
         history.push(`/home/${firstGroup}`)
     }
+    console.log(selectedGroup)
     const groupValues = useSelector(selectGroupValues(group))
     return (
         <Container>
@@ -58,7 +60,7 @@ const BookList = ({ loading, bookGroup }: {loading: boolean, bookGroup?: string}
                     <Loader innerClassName="loader" active={true} type="pacman"></Loader>
                 </StyledLoader> :
                 groupValues && groupValues.length ? groupValues.map((groupValue: any, idx: number) => (
-                    <BooksByGroupList groupValue={groupValue} group={group} key={idx}></BooksByGroupList>
+                    <BookList groupValue={groupValue} group={group} key={idx}></BookList>
                 )) : <p className="no-data">No comics available</p>
 
             }
@@ -66,20 +68,17 @@ const BookList = ({ loading, bookGroup }: {loading: boolean, bookGroup?: string}
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    loading: selectLoading,
-})
-export default connect(mapStateToProps)(BookList)
+export default (BookListByGroup)
 
 
 const BooksByGroupListC = styled.div<BooksByGroupListCType>`
-display: grid;
-grid-template-columns: repeat(${({ columns }) => columns},
-    ${({ columnWidth }) => columnWidth}%);
-grid-column-gap: ${({ gridGap }) => gridGap}%;
-width: 100%;
-border-bottom: solid 2px ${(props) => props.theme.colors.border};
-`
+    display: grid;
+    grid-template-columns: repeat(${({ columns }) => columns},
+        ${({ columnWidth }) => columnWidth}%);
+    grid-column-gap: ${({ gridGap }) => gridGap}%;
+    width: 100%;
+    border-bottom: solid 2px ${(props) => props.theme.colors.border};
+    `
 type BooksByGroupListCType = {
     columnWidth: number,
     gridGap: number,
@@ -87,18 +86,18 @@ type BooksByGroupListCType = {
 }
 
 const GroupValueTitle = styled.h4`
-font-size: 32px;
-color: ${(props) => props.theme.colors.font_dark};
-width: 100%;
-font-weight: normal;
-margin: 1em 0;
+    font-size: 32px;
+    color: ${(props) => props.theme.colors.font_dark};
+    width: 100%;
+    font-weight: normal;
+    margin: 1em 0;
 `
-const BooksByGroupList = ({ groupValue, group }: { groupValue: string, group: string | undefined }) => {
+const BookList = ({ groupValue, group }: { groupValue: string, group: string | undefined }) => {
     const windowWidth = useWindowSize().width
     const gridProps = calculateGridLayout(windowWidth)
     const bookList = useSelector(selectBookItemsByGroupValue(group, groupValue))
     return (
-        <div>
+        <Fragment>
             <GroupValueTitle>{groupValue || "Other Random Books"}</GroupValueTitle>
             <BooksByGroupListC {...gridProps}>
 
@@ -107,7 +106,7 @@ const BooksByGroupList = ({ groupValue, group }: { groupValue: string, group: st
                         <BookItem book={book} key={idx}></BookItem>
                     ))}
             </BooksByGroupListC>
-        </div>
+        </Fragment>
     )
 
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import BookList from '../components/book.list';
-import BookDetailsView from '../components/book.details';
+import BookListByGroup from '../components/bookList.component';
+import BookDetailsView from '../components/bookDetails.component';
 import { selectBookItem } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 
@@ -9,15 +9,15 @@ const BookPage = () => {
     const { id } = useParams()
     const book = useSelector(selectBookItem(id))
     return (
-        <div>
+        <Fragment>
             {
                 book ?
                     <BookDetailsView book={book}></BookDetailsView>
                     :
                     <BookNotFound></BookNotFound>
             }
-            <BookList bookGroup="random"></BookList>
-        </div>
+            <BookListByGroup bookGroup="random"></BookListByGroup>
+        </Fragment>
     )
 }
 

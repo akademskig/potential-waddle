@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import BookImage from './book.image';
+import BookImage from './bookImage.component';
 import { Link } from 'react-router-dom';
 
 

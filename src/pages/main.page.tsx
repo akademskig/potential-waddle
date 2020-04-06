@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import SearchBar from '../components/search.component';
 import GroupList from '../components/groupList.component';
-import BookList from '../components/book.list';
+import BookListByGroup from '../components/bookList.component';
 
 const MainPage = () => {
     return (
-        <div>
+        <Fragment>
             <SearchBar />
             <GroupList ></GroupList>
-            <BookList></BookList>
-        </div>
+            <BookListByGroup></BookListByGroup>
+        </Fragment>
     )
 }
 export default MainPage
