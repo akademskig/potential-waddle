@@ -40,11 +40,13 @@ const StyledLoader = styled.div`
     }
 `
 
-const BookList = ({ loading }: any) => {
+const BookList = ({ loading, bookGroup }: {loading: boolean, bookGroup?: string}) => {
     let { group } = useParams()
+
+    if (bookGroup)
+        group = bookGroup
     let firstGroup = useSelector(selectFirstBookGroup)
     const history = useHistory()
-
     if (!group && firstGroup) {
         history.push(`/home/${firstGroup}`)
     }
@@ -97,7 +99,7 @@ const BooksByGroupList = ({ groupValue, group }: { groupValue: string, group: st
     const bookList = useSelector(selectBookItemsByGroupValue(group, groupValue))
     return (
         <div>
-            <GroupValueTitle>{groupValue || "Random"}</GroupValueTitle>
+            <GroupValueTitle>{groupValue || "Other Random Books"}</GroupValueTitle>
             <BooksByGroupListC {...gridProps}>
 
                 {

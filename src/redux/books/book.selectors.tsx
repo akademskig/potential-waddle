@@ -37,3 +37,8 @@ export const selectBookItemsByGroupValue = (group: string | undefined, groupValu
 export const selectLoading = createSelector(
     [selectBook], (book) => book.loading
 )
+
+export const selectBookItem = (id: string | undefined) => createSelector(
+    [selectBookItems],
+    (bookList) => bookList.find((book: any)=> book.id === id)
+)
