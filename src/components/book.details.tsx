@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import BookImage from './book.image';
 import { Link } from 'react-router-dom';
@@ -65,19 +65,25 @@ const BackLink = () => {
 
 }
 
-const BackLinkStyled = styled(BackLink)`
-    color: ${(props) => props.theme.colors.font_dark};
-`
+const BackLinkStyled = styled.span`
+    a{
+        color: ${(props) => props.theme.colors.font_dark};
+        font-weight: bold;
+        font-size: 20px;
+    }
+    `
 
 const BookDetailsView = ({ book }: { book: any }) => {
     const image = {
         src: book.image,
         width: '100%',
-        alt: "Book cover"
+        alt: "Book cover"   
     }
     return (
-        <div>
-            <BackLinkStyled></BackLinkStyled>
+        <Fragment>
+            <BackLinkStyled >
+                <BackLink></BackLink>
+            </BackLinkStyled>
             <BookContainer>
                 <BookImageC>
                     <BookImage image={image} />
@@ -109,7 +115,7 @@ const BookDetailsView = ({ book }: { book: any }) => {
 
                 </BookDetails>
             </BookContainer>
-        </div>
+        </Fragment>
     )
 }
 
