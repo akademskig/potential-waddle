@@ -20,7 +20,7 @@ class App extends Component<{ fetchBooks: () => void, isEmpty: boolean }> {
     return (
       <div className="App">
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
+          <BrowserRouter basename="#">
             <MainLayout>
               <MainRoutes></MainRoutes>
             </MainLayout>
