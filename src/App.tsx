@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import MainLayout from './layouts/main.layout';
 import MainRoutes from './routes';
-import { createBrowserHistory } from 'history';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
-import { Provider } from 'react-redux'
-import { store, persistor } from './redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
-import Loader from 'react-loaders';
-const history = createBrowserHistory()
+import { connect } from 'react-redux'
+import { fetchBooksStart } from './redux/books/book.actions';
+import theme from './theme/index';
 
-const theme = {
-  colors: {
-    header_bg: '#535353',
-    main_bg: '#333333',
-    font_dark: '#5A5A5A',
-    font_light: '#CCCCCC',
-    border: '#535353'
-  },
-}
-function App() {
-  return (
-    <div className="App">
-      <Provider store={store}>
-        <PersistGate loading={<Loader active={true} type="pacman"></Loader>} persistor={persistor}>
-          <ThemeProvider theme={theme}>
-            <Router history={history}>
-              <MainLayout>
-                <MainRoutes></MainRoutes>
-              </MainLayout>
-            </Router>
-          </ThemeProvider>
-        </PersistGate>
-      </Provider>
-    </div>
-  );
+class App extends Component<{ fetchBooks: () => void }> {
+  componentDidMount = () => {
+    const { fetchBooks } = this.props
+    fetchBooks()
+  }
+  render() {
+    return (
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <MainLayout>
+              <MainRoutes></MainRoutes>
+            </MainLayout>
+          </BrowserRouter>
+        </ThemeProvider>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchBooks: () => dispatch(fetchBooksStart())
+})
+
+export default connect(null, mapDispatchToProps)(App)
