@@ -7,6 +7,11 @@ export const selectBookItems = createSelector(
     (book) => book.bookList
 )
 
+export const isBookListEmpty = createSelector(
+    [selectBookItems],
+    (bookList) => !bookList.length
+)
+
 export const selectBookGroups = createSelector(
     [selectBook],
     (book) => book.bookGroups

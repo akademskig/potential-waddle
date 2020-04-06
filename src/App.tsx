@@ -7,11 +7,14 @@ import { ThemeProvider } from 'styled-components'
 import { connect } from 'react-redux'
 import { fetchBooksStart } from './redux/books/book.actions';
 import theme from './theme/index';
+import {  createStructuredSelector } from 'reselect';
+import { isBookListEmpty } from './redux/books/book.selectors';
 
-class App extends Component<{ fetchBooks: () => void }> {
+class App extends Component<{ fetchBooks: () => void, isEmpty: boolean }> {
   componentDidMount = () => {
-    const { fetchBooks } = this.props
-    fetchBooks()
+    const { fetchBooks, isEmpty } = this.props
+    if (isEmpty)
+      fetchBooks()
   }
   render() {
     return (
@@ -27,9 +30,11 @@ class App extends Component<{ fetchBooks: () => void }> {
     );
   }
 }
-
+const mapStateToProps = createStructuredSelector({
+  isEmpty: isBookListEmpty
+})
 const mapDispatchToProps = (dispatch: any) => ({
   fetchBooks: () => dispatch(fetchBooksStart())
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
