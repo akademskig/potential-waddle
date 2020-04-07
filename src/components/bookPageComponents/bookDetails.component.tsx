@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import BookImage from './bookImage.component';
-import { Link } from 'react-router-dom';
-import { Book } from '../types/index';
-import backIcon from '../../assets/backIcon.svg'
+import { useParams } from 'react-router-dom';
 import BookData from './bookData.component';
+import { useSelector } from 'react-redux';
+import { selectBookItem } from '../../redux/books/book.selectors';
+import BookNotFound from './bookNotFound';
 
 const BookDetailsContainer = styled.div`
     display: flex;
@@ -24,38 +25,28 @@ const BookImageContainer = styled.div`
     }
     `
 
-const BackLinkStyled = styled(Link)`
-        color: ${(props) => props.theme.colors.gray1};
-        font-weight: bold;
-        font-size: 20px;
-        text-decoration: none;
-        @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}){
-           font-size: 16px;
-        }
-    span{
-        text-decoration: underline;
-        margin-left: 0.4em;
-    }
-    `
-
-const BookDetails = ({ book }: { book: Book }) => {
+const BookDetails = () => {
+    const { id } = useParams()
+    const book = useSelector(selectBookItem(id))
     const image = {
-        src: book.image,
+        src: book?.image,
         width: '100%',
         alt: "Book cover"
     }
     return (
-        <Fragment>
-            <BackLinkStyled to="/home">
-                <img src={backIcon} alt="Back icon"></img><span>Back to collection</span>
-            </BackLinkStyled>
-            <BookDetailsContainer>
-                <BookImageContainer>
-                    <BookImage image={image} />
-                </BookImageContainer>
-                <BookData book={book} />
-            </BookDetailsContainer>
-        </Fragment>
+        <BookDetailsContainer>
+            {
+                book ?
+                    <Fragment>
+                        <BookImageContainer>
+                            <BookImage image={image} />
+                        </BookImageContainer>
+                        <BookData book={book} />
+                    </Fragment>
+                    :
+                    <BookNotFound></BookNotFound>
+            }
+        </BookDetailsContainer>
     )
 }
 
