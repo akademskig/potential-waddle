@@ -1,4 +1,9 @@
-const calculateGridLayout = (windowWidth: number) => {
+
+
+/**
+ * @returns {GridLayoutParams} Parameters to build a grid layout based on window width.
+ */
+const calculateGridLayout = (windowWidth: number): GridLayoutParams => {
     const gridGap = 5
     let gridItemWidth = 230
     if (windowWidth > 1800) {
@@ -14,4 +19,9 @@ const calculateGridLayout = (windowWidth: number) => {
     }
 }
 
+type GridLayoutParams = {
+    columns: number,
+    columnWidth: number,
+    gridGap: number
+}
 export default calculateGridLayout
