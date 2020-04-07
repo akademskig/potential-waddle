@@ -17,7 +17,6 @@ class App extends Component<{ fetchBooks: () => void, isEmpty: boolean }> {
   }
   render() {
     return (
-      <div className="App">
         <ThemeProvider theme={theme}>
           <BrowserRouter basename="#">
             <MainLayout>
@@ -25,7 +24,6 @@ class App extends Component<{ fetchBooks: () => void, isEmpty: boolean }> {
             </MainLayout>
           </BrowserRouter>
         </ThemeProvider>
-      </div>
     );
   }
 }
