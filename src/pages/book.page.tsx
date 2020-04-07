@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import BookListByGroup from '../components/bookList.component';
+import BookList from '../components/bookList.component';
 import BookDetailsView from '../components/bookDetails.component';
 import { selectBookItem } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ const BookPage = () => {
                     :
                     <BookNotFound></BookNotFound>
             }
-            <BookListByGroup bookGroup="random"></BookListByGroup>
+            <BookList bookGroup="random"></BookList>
         </Fragment>
     )
 }
