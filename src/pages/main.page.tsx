@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import SearchBar from '../components/search.component';
-import GroupList from '../components/groupList.component';
-import BookList from '../components/bookList.component';
+import SearchBar from '../components/mainPageComponents/search.component';
+import GroupList from '../components/mainPageComponents/groupList.component';
+import BookList from '../components/mainPageComponents/bookList.component';
 
 const MainPage = () => {
     return (

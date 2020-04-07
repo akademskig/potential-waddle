@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import BookList from '../components/bookList.component';
-import BookDetailsView from '../components/bookDetails.component';
+import BookList from '../components/mainPageComponents/bookList.component';
+import BookDetailsView from '../components/bookPageComponents/bookDetails.component';
 import { selectBookItem } from '../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 

@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import BookImage from './bookImage.component';
 import { Link } from 'react-router-dom';
-import { Book } from './types/index';
+import { Book } from '../types/index';
 import RatingStars from './ratingStars.component';
-import backIcon from '../assets/backIcon.svg'
+import backIcon from '../../assets/backIcon.svg'
 
 const BookDetailsContainer = styled.div`
     display: flex;

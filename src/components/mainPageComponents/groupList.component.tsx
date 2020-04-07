@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import {  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectBookGroups } from '../redux/books/book.selectors';
+import { selectBookGroups } from '../../redux/books/book.selectors';
 
 
 const Container = styled.div`

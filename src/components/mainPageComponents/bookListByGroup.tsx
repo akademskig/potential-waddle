@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import BookItem from './bookItem.component';
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
-import useWindowSize from '../utils/useWindowSize';
-import { selectBookItemsByGroupValue } from '../redux/books/book.selectors';
-import calculateGridLayout from '../utils/calculateGridLayout';
-import { BookListGridType } from './types';
+import useWindowSize from '../../utils/useWindowSize';
+import { selectBookItemsByGroupValue } from '../../redux/books/book.selectors';
+import calculateGridLayout from '../../utils/calculateGridLayout';
+import { BookListGridType } from '../types';
 
 
 const BookListGrid = styled.div<BookListGridType>`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-import BookImage from './bookImage.component';
+import BookImage from '../bookPageComponents/bookImage.component';
 
 const Container = styled.div`
     @import 'loaders.css/src/animations/semi-circle-spin.scss';

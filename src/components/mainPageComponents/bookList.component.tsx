@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
-import { selectGroupValues, selectLoading } from '../redux/books/book.selectors';
+import { selectGroupValues, selectLoading } from '../../redux/books/book.selectors';
 import { useSelector } from 'react-redux';
 import Loader from "react-loaders"
 import BookListByGroup from './bookListByGroup';

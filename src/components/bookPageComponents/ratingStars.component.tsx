@@ -1,6 +1,6 @@
 import React from 'react';
-import emtptyStar from '../assets/emptyStar.svg'
-import fullStar from '../assets/fullStar.svg'
+import emtptyStar from '../../assets/emptyStar.svg'
+import fullStar from '../../assets/fullStar.svg'
 import styled from 'styled-components'
 
 const Container = styled.span`

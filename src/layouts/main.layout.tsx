@@ -1,5 +1,5 @@
 
-import Header from '../components/header.component';
+import Header from './header.component';
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components'
 
