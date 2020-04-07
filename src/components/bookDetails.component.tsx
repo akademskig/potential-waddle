@@ -6,7 +6,7 @@ import { Book } from './types/index';
 import RatingStars from './ratingStars.component';
 import backIcon from '../assets/backIcon.svg'
 
-const BookContainer = styled.div`
+const BookDetailsContainer = styled.div`
     display: flex;
     border-bottom: solid 2px ${(props) => props.theme.colors.border};
     padding-bottom: 4em;
@@ -15,7 +15,7 @@ const BookContainer = styled.div`
             flex-direction: column;
         }
     `
-const BookImageC = styled.div`
+const BookImageContainer = styled.div`
     width: 40%;
     max-width: 340px;
     min-width: 300px;
@@ -88,7 +88,7 @@ const BookDetailsStyled = styled.div`
         line-height: 1.2em;
     }
     `
-const BookDetails = ({ book }: { book: Book }) => {
+const BookDataView = ({ book }: { book: Book }) => {
     return (
         <BookDetailsStyled>
             <div className="book-title">
@@ -135,12 +135,12 @@ const BookDetailsView = ({ book }: { book: Book }) => {
             <BackLinkStyled to="/home">
                 <img src={backIcon} alt="Back icon"></img><span>Back to collection</span>
             </BackLinkStyled>
-            <BookContainer>
-                <BookImageC>
+            <BookDetailsContainer>
+                <BookImageContainer>
                     <BookImage image={image} />
-                </BookImageC>
-                <BookDetails book={book} />
-            </BookContainer>
+                </BookImageContainer>
+                <BookDataView book={book} />
+            </BookDetailsContainer>
         </Fragment>
     )
 }
