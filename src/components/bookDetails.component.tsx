@@ -4,12 +4,13 @@ import BookImage from './bookImage.component';
 import { Link } from 'react-router-dom';
 import { Book } from './types/index';
 import RatingStars from './ratingStars.component';
-
+import backIcon from '../assets/backIcon.svg'
 
 const BookContainer = styled.div`
     display: flex;
     border-bottom: solid 2px ${(props) => props.theme.colors.border};
     padding-bottom: 4em;
+    padding-top: 2em;
     @media screen and (max-width: ${(props) => props.theme.breakpoints.md}){
             flex-direction: column;
         }
@@ -18,31 +19,27 @@ const BookImageC = styled.div`
     width: 40%;
     max-width: 340px;
     min-width: 300px;
-    padding-top: 1em;
     @media screen and (max-width: ${(props) => props.theme.breakpoints.xs}){
         width: 100%;
     }
     `
 
-const BackLink = () => {
-    return (
-        <Link to="/home">
-            {"< Back to collection"}
-        </Link>
-    )
-}
-
-const BackLinkStyled = styled.span`
-    a{
-        color: ${(props) => props.theme.colors.font_dark};
+const BackLinkStyled = styled(Link)`
+        color: ${(props) => props.theme.colors.gray1};
         font-weight: bold;
         font-size: 20px;
+        text-decoration: none;
+        @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}){
+           font-size: 16px;
+        }
+    span{
+        text-decoration: underline;
+        margin-left: 0.4em;
     }
     `
 
 const BookDetailsStyled = styled.div`
     margin-left: 2%;
-    padding-top: 1em;
     color: ${(props) => props.theme.colors.font_medium};
     @media screen and (max-width: ${(props) => props.theme.breakpoints.md}){
         margin-left: 0;
@@ -50,10 +47,13 @@ const BookDetailsStyled = styled.div`
     .book-title{
         display: flex;
         align-items: center;
-        margin-bottom: 2em;
         font-weight: 500;
         font-size: 32px;
         flex-wrap: wrap; 
+        line-height: 1.5em;
+        @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}){
+            font-size:  24px;
+        }
       
         p{
             white-space: nowrap;
@@ -70,13 +70,15 @@ const BookDetailsStyled = styled.div`
     .book-details{
         font-size: 16px;
         font-weight: bold;
+        margin-bottom:2.7em;
         ul{
             list-style: none;
             padding-left: 0;
-            line-height: 1.8em;
+            line-height: 2em;
             li{
                 span{
-                    font-weight: normal;
+                    font-weight: 500;
+                    color: ${(props) => props.theme.colors.gray2};
                 }
             }
         }
@@ -130,8 +132,8 @@ const BookDetailsView = ({ book }: { book: Book }) => {
     }
     return (
         <Fragment>
-            <BackLinkStyled>
-                <BackLink />
+            <BackLinkStyled to="/home">
+                <img src={backIcon} alt="Back icon"></img><span>Back to collection</span>
             </BackLinkStyled>
             <BookContainer>
                 <BookImageC>
