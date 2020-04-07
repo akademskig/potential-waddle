@@ -8,21 +8,25 @@ import { selectBookGroups } from '../../redux/books/book.selectors';
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin: 1em 0;
+    margin: 1.5em 0 0 0;
 `
 const GroupLink = styled(NavLink)`
     background-color: transparent;
     border-radius: 19px;
-    box-shadow: 0px 2px 3px rgba(34, 34, 34, 0.6);
     margin-right: 1em;
-    color: ${(props) => props.theme.colors.font_dark};
+    color: ${(props) => props.theme.colors.gray1};
     font-size: 18px;
-    padding: 0.2em 0.8em;
+    font-weight: bold;
+    padding: 0.4em 0.8em;
+    margin: 0.2em 0.3em 0 0.3em;
     text-decoration: none;
     text-transform: capitalize;
     &.active{
         color: white;
         background-color: #F15454;
+    }
+    &:hover{
+        box-shadow: 0px 2px 3px rgba(34, 34, 34, 0.6);
     }
     `
 const GroupList = () => {

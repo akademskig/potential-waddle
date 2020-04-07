@@ -23,6 +23,7 @@ const GroupValueTitle = styled.h4`
     color: ${(props) => props.theme.colors.font_medium};
     width: 100%;
     font-weight: normal;
+    margin: 1em 0;
     @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}){
             font-size:  24px;
     }
