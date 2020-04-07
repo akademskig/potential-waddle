@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import useWindowSize from '../utils/useWindowSize';
 import { selectBookItemsByGroupValue } from '../redux/books/book.selectors';
 import calculateGridLayout from '../utils/calculateGridLayout';
+import { BookListGridType } from './types';
 
 
 const BookListGrid = styled.div<BookListGridType>`
@@ -15,11 +16,7 @@ const BookListGrid = styled.div<BookListGridType>`
     width: 100%;
     border-bottom: solid 2px ${(props) => props.theme.colors.border};
     `
-type BookListGridType = {
-    columnWidth: number,
-    gridGap: number,
-    columns: number
-}
+
 
 const GroupValueTitle = styled.h4`
     font-size: 32px;
@@ -28,7 +25,6 @@ const GroupValueTitle = styled.h4`
     font-weight: normal;
     margin: 1em 0;
     `
-
 
 const BookListByGroup = ({ groupValue, group }: { groupValue: string, group: string | undefined }) => {
     const windowWidth = useWindowSize().width
