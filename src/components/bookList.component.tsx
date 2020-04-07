@@ -35,11 +35,13 @@ const StyledLoader = styled.div`
         height: 130px;
     }
 `
+
 const BookList = ({ bookGroup }: { bookGroup?: string }) => {
-    let { group } = useParams()
-    let currentGroup = bookGroup || group
-    let loading = useSelector(selectLoading)
+    const { group } = useParams()
+    const currentGroup = bookGroup || group
+    const loading = useSelector(selectLoading)
     const groupValues = useSelector(selectGroupValues(currentGroup))
+
     return (
         <Container>
             {loading ?
