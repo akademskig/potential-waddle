@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import BookImage from './bookImage.component';
 import { Link } from 'react-router-dom';
+import { Book } from './types/index';
+import RatingStars from './ratingStars.component';
 
 
 const BookContainer = styled.div`
@@ -46,11 +48,24 @@ const BookDetailsStyled = styled.div`
         margin-left: 0;
     }
     .book-title{
-        h4{
-            margin-top: 0;
-        }
+        display: flex;
+        align-items: center;
+        margin-bottom: 2em;
         font-weight: 500;
         font-size: 32px;
+        flex-wrap: wrap; 
+      
+        p{
+            white-space: nowrap;
+            margin: 0;
+            margin-right: 0.2em;
+            &:nth-child(2){
+                margin-right: 3%;
+            }
+            @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
+             white-space: pre-wrap;        
+            };
+        }
     }
     .book-details{
         font-size: 16px;
@@ -71,11 +86,17 @@ const BookDetailsStyled = styled.div`
         line-height: 1.2em;
     }
     `
-const BookDetails = ({ book }: { book: any }) => {
+const BookDetails = ({ book }: { book: Book }) => {
     return (
         <BookDetailsStyled>
             <div className="book-title">
-                <h4>{book.name} (<span>{book.year}) </span></h4>
+                <p>
+                    {book.name}
+                </p>
+                <p>
+                    ({book.year})
+                </p>
+                <RatingStars rating={book.rating}></RatingStars>
             </div>
             <div className="book-details">
                 <ul>
@@ -97,12 +118,11 @@ const BookDetails = ({ book }: { book: any }) => {
                 {book.summary}
             </div>
         </BookDetailsStyled>
-
     )
 }
 
 
-const BookDetailsView = ({ book }: { book: any }) => {
+const BookDetailsView = ({ book }: { book: Book }) => {
     const image = {
         src: book.image,
         width: '100%',
