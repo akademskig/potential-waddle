@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 
 const PageContainer = styled.div`
     background-color: ${props => props.theme.colors.main_bg};
-    padding: 2%;
+    padding: 2em 2%;
     ${css({ "min-height": "calc(100vh - 73px)" })};
     `
 const mainLayout = ({ children }: { children: any }) => {

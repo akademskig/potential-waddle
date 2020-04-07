@@ -6,6 +6,8 @@ const theme = {
       font_dark: '#5A5A5A',
       font_light: '#CCCCCC',
       font_medium: "#AAAAAA",
+      gray1: "#777777",
+      gray2: "#99999",
       border: '#535353'
     },
     breakpoints: {
