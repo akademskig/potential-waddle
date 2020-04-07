@@ -27,7 +27,6 @@ const BookText = styled.div`
 `
 
 const BookItem = ({ book }: { book: any }) => {
-
     const image = {
         src: book.image,
         alt: "Book cover",
