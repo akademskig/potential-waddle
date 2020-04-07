@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import BookImage from './bookImage.component';
 import { Link } from 'react-router-dom';
 import { Book } from '../types/index';
-import RatingStars from './ratingStars.component';
 import backIcon from '../../assets/backIcon.svg'
+import BookData from './bookData.component';
 
 const BookDetailsContainer = styled.div`
     display: flex;
@@ -38,93 +38,7 @@ const BackLinkStyled = styled(Link)`
     }
     `
 
-const BookDetailsStyled = styled.div`
-    margin-left: 2%;
-    color: ${(props) => props.theme.colors.font_medium};
-    @media screen and (max-width: ${(props) => props.theme.breakpoints.md}){
-        margin-left: 0;
-    }
-    .book-title{
-        display: flex;
-        align-items: center;
-        font-weight: 500;
-        font-size: 32px;
-        flex-wrap: wrap; 
-        line-height: 1.5em;
-        @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}){
-            font-size:  24px;
-        }
-      
-        p{
-            white-space: nowrap;
-            margin: 0;
-            margin-right: 0.2em;
-            &:nth-child(2){
-                margin-right: 3%;
-            }
-            @media screen and (max-width: ${(props) => props.theme.breakpoints.sm}) {
-             white-space: pre-wrap;        
-            };
-        }
-    }
-    .book-details{
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom:2.7em;
-        ul{
-            list-style: none;
-            padding-left: 0;
-            line-height: 2em;
-            li{
-                span{
-                    font-weight: 500;
-                    color: ${(props) => props.theme.colors.gray2};
-                }
-            }
-        }
-    }
-    .book-summary{
-        font-weight: bold;
-        line-height: 1.2em;
-    }
-    `
-const BookDataView = ({ book }: { book: Book }) => {
-    return (
-        <BookDetailsStyled>
-            <div className="book-title">
-                <p>
-                    {book.name}
-                </p>
-                <p>
-                    ({book.year})
-                </p>
-                <RatingStars rating={book.rating}></RatingStars>
-            </div>
-            <div className="book-details">
-                <ul>
-                    <li>
-                        <span> Writer: </span>  {book.writer}
-                    </li>
-                    <li>
-                        <span> Artist: </span>{book.artist}
-                    </li>
-                    <li>
-                        <span> Publication: </span> {book.publication}
-                    </li>
-                    <li>
-                        <span> Owner: </span> {book.owner}
-                    </li>
-                </ul>
-            </div>
-            <div className="book-summary">
-                {book.summary}
-            </div>
-        </BookDetailsStyled>
-    )
-}
-
-
-const BookDetailsView = ({ book }: { book: Book }) => {
+const BookDetails = ({ book }: { book: Book }) => {
     const image = {
         src: book.image,
         width: '100%',
@@ -139,10 +53,10 @@ const BookDetailsView = ({ book }: { book: Book }) => {
                 <BookImageContainer>
                     <BookImage image={image} />
                 </BookImageContainer>
-                <BookDataView book={book} />
+                <BookData book={book} />
             </BookDetailsContainer>
         </Fragment>
     )
 }
 
-export default BookDetailsView
+export default BookDetails
