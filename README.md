@@ -12,6 +12,6 @@ Fortunately enough, all the data is already cataloged into their DB with a simpl
 
 - Make sure to have at least npm v5.2 installed.
 - To install the project, in the root directory run `npm install`.
-- to start a development server, run `npm start`.
-- To serve a production build, run `npm run build`, and serve it with a simple web server, e.g [serve](https://www.npmjs.com/package/serve), by running `npx serve`.
+- To start a development server, run `npm start`.
+- To serve a production build, run `npm run build`, and serve it with a simple web server, e.g [serve](https://www.npmjs.com/package/serve), by running `npx serve build`.
 
