@@ -15,7 +15,8 @@ export const fetchBooksOk = (bookList: []) => ({
 export const searchBooksStart = (searchValue: string) => ({
     type: SEARCH_BOOKS_START,
     payload:{
-        searchValue}
+        searchValue
+    }
 })
 
 export const searchBooksOk = (bookList: []) => ({

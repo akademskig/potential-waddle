@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 import searchIcon from '../../assets/searchIcon.png'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchBooksStart } from '../../redux/books/book.actions';
+import { selectSearchTerm } from '../../redux/books/book.selectors';
 const Container = styled.div`
     height: 60px;
     display: flex;
@@ -27,6 +28,7 @@ const Input = styled.input`
     }
     `
 const SearchBar = () => {
+    const searchValue= useSelector(selectSearchTerm)
     const dispatch = useDispatch()
     const onInputChange = (searchValue: string) => {
         dispatch(searchBooksStart(searchValue))
@@ -34,7 +36,7 @@ const SearchBar = () => {
     return (
         <Container>
             <img src={searchIcon} alt="Search Icon" />
-            <Input type="text" placeholder="Search by book name" onChange={(e) => onInputChange(e.target.value)} />
+            <Input type="text" placeholder="Search by book name" value={searchValue}onChange={(e) => onInputChange(e.target.value)} />
         </Container>
     )
 }

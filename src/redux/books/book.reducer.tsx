@@ -3,7 +3,8 @@ import { v1 } from 'uuid'
 const initialState = {
     bookList: [],
     loading: false,
-    bookGroups: ["year", "writer", "artist", "owner", "random"]
+    bookGroups: ["year", "writer", "artist", "owner", "random"],
+    searchTerm: ""
 }
 
 function bookReducer(state = initialState, action: { type: string, payload: any }) {
@@ -23,8 +24,10 @@ function bookReducer(state = initialState, action: { type: string, payload: any 
             }
         }
         case SEARCH_BOOKS_START: {
+            const {searchValue} = action.payload
             return {
                 ...state,
+                searchTerm: searchValue,
                 loading: true
             }
         }

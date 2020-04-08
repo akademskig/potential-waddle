@@ -2,14 +2,19 @@ import { createSelector } from "reselect"
 import { uniq } from 'lodash'
 const selectBook = (state: any) => state.book
 
-export const selectBookItems = createSelector(
+export const selectBookList = createSelector(
     [selectBook],
     (book) => book.bookList
 )
 
+export const selectSearchTerm  = createSelector(
+    [selectBook],
+    (book) => book.searchTerm
+)
+
 export const isBookListEmpty = createSelector(
-    [selectBookItems],
-    (bookList) => !bookList.length
+    [selectBookList, selectSearchTerm],
+    (bookList, searchTerm) => !bookList.length && !searchTerm
 )
 
 export const selectBookGroups = createSelector(
@@ -21,7 +26,7 @@ export const selectFirstBookGroup = createSelector(
     (bookGroups) => bookGroups.length ? bookGroups[0] : undefined
 )
 export const selectGroupValues = (group: string | undefined) => createSelector(
-    [selectBookItems, selectBookGroups],
+    [selectBookList, selectBookGroups],
     (bookList, bookGroups) => {
         const bookGroupMap = new Map()
         bookGroups.forEach((bG: string) => {
@@ -35,7 +40,7 @@ export const selectGroupValues = (group: string | undefined) => createSelector(
 )
 
 export const selectBookItemsByGroupValue = (group: string | undefined, groupValue: string) => createSelector(
-    [selectBookItems],
+    [selectBookList],
     (bookList) => bookList.filter((book: any) => (group && group === "random") || (group && book[group] === groupValue))
 )
 
@@ -44,6 +49,6 @@ export const selectLoading = createSelector(
 )
 
 export const selectBookItem = (id: string | undefined) => createSelector(
-    [selectBookItems],
+    [selectBookList],
     (bookList) => bookList.find((book: any)=> book.id === id)
 )
