@@ -5,6 +5,7 @@ import { selectGroupValues, selectLoading } from '../../redux/books/book.selecto
 import { useSelector } from 'react-redux';
 import Loader from "react-loaders"
 import BookListByGroup from './bookListByGroup';
+import ItemNotFound from '../common/itemNotFound';
 
 const Container = styled.div`
     display: flex;
@@ -49,7 +50,7 @@ const BookList = ({ bookGroup }: { bookGroup?: string }) => {
                 </StyledLoader> :
                 groupValues && groupValues.length ? groupValues.map((groupValue: any, idx: number) =>
                     <BookListByGroup groupValue={groupValue} group={currentGroup} key={idx}></BookListByGroup>
-                ) : <p className="no-data">No comics available</p>
+                ) : <ItemNotFound>No comics available.</ItemNotFound>
             }
         </Container>
     )

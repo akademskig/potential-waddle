@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import BookData from './bookData.component';
 import { useSelector } from 'react-redux';
 import { selectBookItem } from '../../redux/books/book.selectors';
-import BookNotFound from './bookNotFound';
+import ItemNotFound from '../common/itemNotFound';
 
 const BookDetailsContainer = styled.div`
     display: flex;
@@ -44,7 +44,7 @@ const BookDetails = () => {
                         <BookData book={book} />
                     </Fragment>
                     :
-                    <BookNotFound></BookNotFound>
+                    <ItemNotFound>Book not found.</ItemNotFound>
             }
         </BookDetailsContainer>
     )
