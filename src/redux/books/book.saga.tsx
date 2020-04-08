@@ -3,6 +3,9 @@ import { FETCH_BOOKS_OK, FETCH_BOOKS_ERROR, FETCH_BOOKS_START, SEARCH_BOOKS_STAR
 import BookApi from '../../api/BookApi';
 
 
+/**
+ * Fetches book collection on app startup.
+ */
 function* fetchBooks() {
    try {
       const books = yield call(BookApi.fetchBooks);
@@ -12,6 +15,10 @@ function* fetchBooks() {
    }
 }
 
+/**
+ * Fetches book collection matching search term passed in query.
+ * @param {string} searchValue - search term
+ */
 function* searchBooks(searchValue: string){
    yield delay(500)
    try {
