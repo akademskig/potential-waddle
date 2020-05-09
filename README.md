@@ -1,12 +1,7 @@
-# ComicClan - React Webapp Specification
 
 ### Description
 
-
-ComicClan, an online community of comic book enthusiasts, has contacted you to help them develop their new online library of comic books. The library will represent the combined collection of comic books owned by the community members.
-
-Fortunately enough, all the data is already cataloged into their DB with a simple API delivering all the information you need. They are asking that you develop a React web-app based on a provided design.
-
+Simple book list built in ReactJs, Redux and Redux-saga. Lists comics and enables querying by author through provided api.
 
 ### Installation instructions
 
